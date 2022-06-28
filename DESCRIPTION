@@ -1,0 +1,20 @@
+Package: tackPlotR
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.1
+Authors@R: 
+    person("JunJun", "Lao", , "3219030654@stu.cpu.edu.cn", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: Use bigwig file to visulaze track and gene plot.
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Imports: 
+    aplot,
+    dplyr,
+    ggh4x,
+    ggplot2,
+    ggsci,
+    ggtranscript,
+    rtracklayer
