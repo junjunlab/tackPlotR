@@ -3,36 +3,38 @@
 \name{loadBWfile}
 \alias{loadBWfile}
 \title{loadBWfile}
-\usage{
-loadBWfile(file = NULL, name = NULL, samp = NULL, group = NULL)
-}
 \arguments{
 \item{file}{Your bigwig file name.}
 
-\item{name}{Your bigwig file sample name.}
+\item{sample}{Your bigwig file sample name.}
 
-\item{samp}{Your bigwig file group name, like 'Input','IP'.}
+\item{group1}{Your bigwig file group name, like 'Input','IP'.}
 
-\item{group}{Your bigwig file treat name, like 'control','treat1','treat2'.}
+\item{group2}{Your bigwig file treat name, like 'control','treat1','treat2'.}
 }
 \value{
-
+Reture a dataframe all bigwig contents.
 }
 \description{
-loadBWfile function used to read bigwig files.
+loadBWfile function used to read bigwig files
 }
 \examples{
 \dontrun{
-file <- c("control.input.bw" ,"control.ip.bw",
-         "t1.input.bw","t1.ip.bw",
-         "t2.input.bw","t2.ip.bw")
-sname <- c("control.input" ,"control.ip",
-          "t1.input","t1.ip",
-          "t2.input","t2.ip")
-samp <- c(rep(c('Input','IP'),3))
-grou <- c(rep('Control',2),rep('T1',2),rep('T2',2))
+file <- c(
+  "control.input.bw", "control.ip.bw",
+  "t1.input.bw", "t1.ip.bw",
+  "t2.input.bw", "t2.ip.bw"
+)
+samp <- c(
+  "control.input", "control.ip",
+  "t1.input", "t1.ip",
+  "t2.input", "t2.ip"
+)
+group1 <- c(rep(c("Input", "IP"), 3))
+group2 <- c(rep("Control", 2), rep("T1", 2), rep("T2", 2))
 
 # 2.load bw files
-allBw <- loadBWfile(file = file,name = sname,samp = samp,group = grou)
+allBw <- loadBWfile(file = file, sample = samp, group1 = group1, group2 = group2)
 }
+
 }

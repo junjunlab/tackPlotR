@@ -5,8 +5,7 @@ Authors@R:
     person("JunJun", "Lao", , "3219030654@stu.cpu.edu.cn", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: Use bigwig file to visulaze track and gene plot.
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
@@ -17,4 +16,8 @@ Imports:
     ggplot2,
     ggsci,
     ggtranscript,
-    rtracklayer
+    magrittr,
+    patchwork,
+    purrr,
+    rtracklayer,
+    stats

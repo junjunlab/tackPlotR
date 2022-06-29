@@ -1,5 +1,6 @@
+#' @name plotTrack
 #' @title plotTrack
-#' @description plotTrack is used to visulaize gene track from bigwig files.
+#' @description plotTrack is used to visulaize gene track from bigwig files
 #' @param gtfFile Your annotation file with GTF format, eg 'Mus_musculus.GRCm38.102.gtf'.
 #' @param gene Which gene used to plot, eg 'Actb'.
 #' @param bigwigFile loadBWfile function output results.
@@ -21,79 +22,99 @@
 #' @param base_size ggplot base size, default is 12.
 #' @param ylab Y axis label, default is 'Read coverage'.
 #'
-#' @return
+#' @return Return a track plot.
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#'   # examples
-#'   plotTrack(gtfFile = gtf,
-#'             gene = 'Actb',
-#'             arrowCol = 'black',
-#'             bigwigFile = allBw,
-#'             sampleAes = 'sample',
-#'             facetVars = 'name')
+#' # examples
+#' plotTrack(
+#'   gtfFile = gtf,
+#'   gene = "Actb",
+#'   arrowCol = "black",
+#'   bigwigFile = allBw,
+#'   sampleAes = "group1",
+#'   facetVars = "sample"
+#' )
 #'
-#'   # change aes variable
-#'   plotTrack(gtfFile = gtf,
-#'             gene = 'Actb',
-#'             arrowCol = 'black',
-#'             bigwigFile = allBw,
-#'             sampleAes = 'name',
-#'             facetVars = 'name')
+#' # change aes variable
+#' plotTrack(
+#'   gtfFile = gtf,
+#'   gene = "Actb",
+#'   arrowCol = "black",
+#'   bigwigFile = allBw,
+#'   sampleAes = "sample",
+#'   facetVars = "sample"
+#' )
 #'
-#'   # change track colors
-#'   plotTrack(gtfFile = gtf,
-#'             gene = 'Actb',
-#'             arrowCol = 'black',
-#'             bigwigFile = allBw,
-#'             sampleAes = 'name',
-#'             facetVars = 'name',
-#'             trackCol = pal_lancet()(6))
+#' # change track colors
+#' plotTrack(
+#'   gtfFile = gtf,
+#'   gene = "Actb",
+#'   arrowCol = "black",
+#'   bigwigFile = allBw,
+#'   sampleAes = "sample",
+#'   facetVars = "sample",
+#'   trackCol = pal_lancet()(6)
+#' )
 #'
-#'   # draw multiple genes
-#'   plotTrack(gtfFile = gtf,
-#'             gene = 'Tnf',
-#'             arrowCol = 'black',
-#'             bigwigFile = allBw,
-#'             sampleAes = 'sample',
-#'             facetVars = 'name',
-#'             multiple = TRUE,
-#'             myTransId = c('ENSMUST00000025263','ENSMUST00000167924'))
+#' # draw multiple genes
+#' plotTrack(
+#'   gtfFile = gtf,
+#'   gene = "Tnf",
+#'   arrowCol = "black",
+#'   bigwigFile = allBw,
+#'   sampleAes = "group1",
+#'   facetVars = "sample",
+#'   multiple = TRUE,
+#'   myTransId = c("ENSMUST00000025263", "ENSMUST00000167924")
+#' )
 #'
-#'   # change facet fill colors
-#'   plotTrack(gtfFile = gtf,
-#'             gene = 'Actb',
-#'             arrowCol = 'black',
-#'             bigwigFile = allBw,
-#'             sampleAes = 'sample',
-#'             addfacetCol = TRUE,
-#'             facetVars = 'name',
-#'             facetFill = pal_d3()(6),
-#'             borderCol = rep('white',6))
+#' # change facet fill colors
+#' plotTrack(
+#'   gtfFile = gtf,
+#'   gene = "Actb",
+#'   arrowCol = "black",
+#'   bigwigFile = allBw,
+#'   sampleAes = "group1",
+#'   addfacetCol = TRUE,
+#'   facetVars = "sample",
+#'   facetFill = pal_d3()(6),
+#'   borderCol = rep("white", 6)
+#' )
 #'
-#'   # add one facet
-#'   plotTrack(gtfFile = gtf,
-#'             gene = 'Actb',
-#'             arrowCol = 'black',
-#'             bigwigFile = allBw,
-#'             sampleAes = 'sample',
-#'             facetVars = c('group','sample'),
-#'             addfacetCol = TRUE,
-#'             facetFill = c(pal_d3()(3),pal_npg()(6)),
-#'             borderCol = rep('white',9))
+#' # add one facet
+#' plotTrack(
+#'   gtfFile = gtf,
+#'   gene = "Actb",
+#'   arrowCol = "black",
+#'   bigwigFile = allBw,
+#'   sampleAes = "group1",
+#'   facetVars = c("group2", "group1"),
+#'   addfacetCol = TRUE,
+#'   facetFill = c(pal_d3()(3), pal_npg()(6)),
+#'   borderCol = rep("white", 9)
+#' )
 #'
-#'   # add more one facet
-#'   plotTrack(gtfFile = gtf,
-#'             gene = 'Actb',
-#'             arrowCol = 'black',
-#'             bigwigFile = allBw,
-#'             sampleAes = 'sample',
-#'             facetVars = c('group','sample','name'),
-#'             addfacetCol = TRUE,
-#'             facetFill = c(pal_d3()(3),pal_npg()(6),pal_locuszoom()(6)),
-#'             borderCol = rep('white',15))
+#' # add more one facet
+#' plotTrack(
+#'   gtfFile = gtf,
+#'   gene = "Actb",
+#'   arrowCol = "black",
+#'   bigwigFile = allBw,
+#'   sampleAes = "group1",
+#'   facetVars = c("group2", "group1", "sample"),
+#'   addfacetCol = TRUE,
+#'   facetFill = c(pal_d3()(3), pal_npg()(6), pal_locuszoom()(6)),
+#'   borderCol = rep("white", 15)
+#' )
 #' }
+#'
+# define viriables
+globalVariables(c(
+  "cdsLen", "desc", "end", "exonLen", "gene_name", "score", "seqnames",
+  "start", "strand", "transcript_id", "transcript_name", "type", "width"
+))
 
 # define function
 plotTrack <- function(gtfFile = NULL,
@@ -101,8 +122,8 @@ plotTrack <- function(gtfFile = NULL,
                       bigwigFile = NULL,
                       multiple = FALSE,
                       myTransId = NULL,
-                      strucCol = '#336699',
-                      arrowCol = '#336699',
+                      strucCol = "#336699",
+                      arrowCol = "#336699",
                       strucHeight = 0.25,
                       uped = 1000,
                       downed = 1000,
@@ -115,154 +136,197 @@ plotTrack <- function(gtfFile = NULL,
                       relHeight = 0.1,
                       annoTextSize = 10,
                       base_size = 12,
-                      ylab = 'Read coverage'){
+                      ylab = "Read coverage") {
   ############################################################
   # filter gene
-  ginfo <- gtfFile %>% filter(gene_name == gene)
+  ginfo <- gtfFile %>% dplyr::filter(gene_name == gene)
 
   # transcript_id
   tid <- unique(ginfo$transcript_id) %>%
-    na.omit() %>%
+    stats::na.omit() %>%
     as.character()
 
   # exon and cds length
-  map_df(tid,function(x){
-    tmp <- ginfo %>% filter(transcript_id == x)
+  purrr::map_df(tid, function(x) {
+    tmp <- ginfo %>% dplyr::filter(transcript_id == x)
 
     # 1.transcript region
-    rg <- tmp %>% filter(type == 'transcript') %>%
-      select(start,end)
+    rg <- tmp %>%
+      dplyr::filter(type == "transcript") %>%
+      dplyr::select(start, end)
 
     # 2.get exon length
-    exonLen <- tmp %>% filter(type == 'exon') %>%
-      select(width) %>%
+    exonLen <- tmp %>%
+      dplyr::filter(type == "exon") %>%
+      dplyr::select(width) %>%
       sum()
 
     # 3.test gene whether is protein coding
     # and order by cds and exon length
     eType <- unique(tmp$type)
-    if('CDS' %in% eType){
-      cdsLen <- tmp %>% filter(type == 'CDS') %>%
-        select(width) %>%
+    if ("CDS" %in% eType) {
+      cdsLen <- tmp %>%
+        dplyr::filter(type == "CDS") %>%
+        dplyr::select(width) %>%
         sum()
-    }else{
+    } else {
       cdsLen <- 0
     }
 
     # 4.output
-    tmpRes <- data.frame(gene = unique(tmp$gene_name),
-                         tid = x,
-                         exonLen = exonLen,
-                         cdsLen = cdsLen,
-                         chr = unique(tmp$seqnames),
-                         rg)
+    tmpRes <- data.frame(
+      gene = unique(tmp$gene_name),
+      tid = x,
+      exonLen = exonLen,
+      cdsLen = cdsLen,
+      chr = unique(tmp$seqnames),
+      rg
+    )
     return(tmpRes)
   }) %>%
-    arrange(desc(cdsLen),desc(exonLen)) -> lengthInfo
+    dplyr::arrange(desc(cdsLen), desc(exonLen)) -> lengthInfo
   print(lengthInfo)
 
   ############################################################
   # prepare gene strcture
 
   # 1.select which transcript to plot
-  if(multiple == FALSE){
+  if (multiple == FALSE) {
     # filter gene
     target_gene <- gtfFile %>%
-      filter(transcript_id %in% lengthInfo$tid[1])
+      dplyr::filter(transcript_id %in% lengthInfo$tid[1])
 
     # transcript name info
-    print(paste0('Choosed transcript ',lengthInfo$tid[1],' to draw gene structure!'))
-  }else if(multiple == TRUE){
+    print(paste0(
+      "Choosed transcript ",
+      lengthInfo$tid[1],
+      " to draw gene structure!"
+    ))
+  } else if (multiple == TRUE) {
     # filter gene
     target_gene <- gtfFile %>%
-      filter(transcript_id %in% myTransId)
+      dplyr::filter(transcript_id %in% myTransId)
   }
 
   # 2.get exon info
-  target_exon <- target_gene %>% filter(type == "exon")
+  target_exon <- target_gene %>% dplyr::filter(type == "exon")
 
   # 3.get cds info
-  target_cds <- target_gene %>% filter(type == "CDS")
+  target_cds <- target_gene %>% dplyr::filter(type == "CDS")
 
   # 4.plot
-  gene_strcture <-ggplot(target_exon,aes(xstart = start,xend = end,y = transcript_name)) +
-    geom_range(fill = strucCol,
-               height = strucHeight,color = NA) +
-    geom_range(data = target_cds,
-               fill = strucCol,
-               height = 2*strucHeight,color = NA) +
-    geom_intron(
-      data = to_intron(target_exon, "transcript_name"),
-      aes(strand = strand),
-      color = arrowCol,size = 0.3,
-      arrow.min.intron.length = 0) +
-    theme_void() +
-    theme(plot.margin = margin(0,0,10,0,'mm'))
+  gene_strcture <- ggplot2::ggplot(
+    target_exon,
+    ggplot2::aes(xstart = start, xend = end, y = transcript_name)
+  ) +
+    ggtranscript::geom_range(
+      fill = strucCol,
+      height = strucHeight,
+      color = NA
+    ) +
+    ggtranscript::geom_range(
+      data = target_cds,
+      fill = strucCol,
+      height = 2 * strucHeight,
+      color = NA
+    ) +
+    ggtranscript::geom_intron(
+      data = ggtranscript::to_intron(target_exon, "transcript_name"),
+      ggplot2::aes(strand = strand),
+      color = arrowCol,
+      size = 0.3,
+      arrow.min.intron.length = 0
+    ) +
+    ggplot2::theme_void() +
+    ggplot2::theme(plot.margin = ggplot2::margin(0, 0, 10, 0, "mm"))
 
   ############################################################
 
   # filter gene region
   regionBW <- bigwigFile %>%
-    filter(seqnames %in% lengthInfo$chr) %>%
-    filter(start >= (min(lengthInfo$start) - uped) &
-             end <= (max(lengthInfo$end + downed)))
+    dplyr::filter(seqnames %in% lengthInfo$chr) %>%
+    dplyr::filter(start >= (min(lengthInfo$start) - uped) &
+      end <= (max(lengthInfo$end + downed)))
 
   ############################################################
 
   # plot track
   p1 <-
-    ggplot(regionBW) +
-    geom_rect(aes(xmin = start,xmax = end,
-                  ymin = 0,ymax = score,
-                  fill = get(sampleAes),
-                  color = get(sampleAes)),
-              show.legend = F) +
-    scale_y_continuous(position = 'right') +
-    theme_bw(base_size = base_size) +
-    ggtitle(unique(lengthInfo$gene)) +
-    theme(panel.grid = element_blank(),
-          strip.placement = "outside",
-          legend.position = 'top',
-          axis.text = element_blank(),
-          axis.ticks = element_blank(),
-          plot.title = element_text(hjust = 0.5,size = base_size + 2),
-          panel.spacing.y = unit(0,'mm'),
-          strip.text = element_text(size = annoTextSize)
+    ggplot2::ggplot(regionBW) +
+    ggplot2::geom_rect(
+      ggplot2::aes(
+        xmin = start,
+        xmax = end,
+        ymin = 0,
+        ymax = score,
+        fill = get(sampleAes),
+        color = get(sampleAes)
+      ),
+      show.legend = F
     ) +
-    ylab(ylab) + xlab('') +
-    coord_cartesian(expand = 0)
+    ggplot2::scale_y_continuous(position = "right") +
+    ggplot2::theme_bw(base_size = base_size) +
+    ggplot2::ggtitle(unique(lengthInfo$gene)) +
+    ggplot2::theme(
+      panel.grid = ggplot2::element_blank(),
+      strip.placement = "outside",
+      legend.position = "top",
+      axis.text = ggplot2::element_blank(),
+      axis.ticks = ggplot2::element_blank(),
+      plot.title = ggplot2::element_text(hjust = 0.5, size = base_size + 2),
+      panel.spacing.y = ggplot2::unit(0, "mm"),
+      strip.text = ggplot2::element_text(size = annoTextSize)
+    ) +
+    ggplot2::ylab(ylab) +
+    ggplot2::xlab("") +
+    ggplot2::coord_cartesian(expand = 0)
 
   # whether change trcak colors
-  if(is.null(trackCol)){
+  if (is.null(trackCol)) {
     p2 <- p1
-  }else{
+  } else {
     p2 <- p1 +
-      scale_fill_manual(name = '',
-                        values = trackCol) +
-      scale_color_manual(name = '',
-                         values = trackCol)
+      ggplot2::scale_fill_manual(
+        name = "",
+        values = trackCol
+      ) +
+      ggplot2::scale_color_manual(
+        name = "",
+        values = trackCol
+      )
   }
 
   # whether add facet colors
-  if(addfacetCol == FALSE){
+  if (addfacetCol == FALSE) {
     p3 <- p2 +
-      facet_nested_wrap(vars(get(facetVars)),
-                        dir = 'v',ncol = 1,
-                        strip.position = "left")
-  }else if(addfacetCol == TRUE){
-    strip = strip_nested(background_y =
-                           elem_list_rect(fill = facetFill,
-                                          color = borderCol))
+      ggh4x::facet_nested_wrap(
+        facets = facetVars,
+        dir = "v",
+        ncol = 1,
+        strip.position = "left"
+      )
+  } else if (addfacetCol == TRUE) {
+    strip <- ggh4x::strip_nested(
+      background_y =
+        ggh4x::elem_list_rect(
+          fill = facetFill,
+          color = borderCol
+        )
+    )
     # plot
     p3 <- p2 +
-      facet_nested_wrap(facets = facetVars,
-                        dir = 'v',ncol = 1,
-                        strip.position = "left",
-                        strip = strip)
+      ggh4x::facet_nested_wrap(
+        facets = facetVars,
+        dir = "v",
+        ncol = 1,
+        strip.position = "left",
+        strip = strip
+      )
   }
 
   ##########################################
   # combine
-  pcombined <- p3 %>% insert_bottom(gene_strcture,height = relHeight)
+  pcombined <-
+    p3 %>% aplot::insert_bottom(gene_strcture, height = relHeight)
   return(pcombined)
 }

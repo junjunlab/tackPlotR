@@ -3,30 +3,6 @@
 \name{plotTrack}
 \alias{plotTrack}
 \title{plotTrack}
-\usage{
-plotTrack(
-  gtfFile = NULL,
-  gene = NULL,
-  bigwigFile = NULL,
-  multiple = FALSE,
-  myTransId = NULL,
-  strucCol = "#336699",
-  arrowCol = "#336699",
-  strucHeight = 0.25,
-  uped = 1000,
-  downed = 1000,
-  addfacetCol = FALSE,
-  facetFill = NULL,
-  borderCol = NULL,
-  sampleAes = NULL,
-  trackCol = NULL,
-  facetVars = NULL,
-  relHeight = 0.1,
-  annoTextSize = 10,
-  base_size = 12,
-  ylab = "Read coverage"
-)
-}
 \arguments{
 \item{gtfFile}{Your annotation file with GTF format, eg 'Mus_musculus.GRCm38.102.gtf'.}
 
@@ -69,79 +45,94 @@ plotTrack(
 \item{ylab}{Y axis label, default is 'Read coverage'.}
 }
 \value{
-
+Return a track plot.
 }
 \description{
-plotTrack is used to visulaize gene track from bigwig files.
+plotTrack is used to visulaize gene track from bigwig files
 }
 \examples{
 \dontrun{
-  # examples
-  plotTrack(gtfFile = gtf,
-            gene = 'Actb',
-            arrowCol = 'black',
-            bigwigFile = allBw,
-            sampleAes = 'sample',
-            facetVars = 'name')
+# examples
+plotTrack(
+  gtfFile = gtf,
+  gene = "Actb",
+  arrowCol = "black",
+  bigwigFile = allBw,
+  sampleAes = "group1",
+  facetVars = "sample"
+)
 
-  # change aes variable
-  plotTrack(gtfFile = gtf,
-            gene = 'Actb',
-            arrowCol = 'black',
-            bigwigFile = allBw,
-            sampleAes = 'name',
-            facetVars = 'name')
+# change aes variable
+plotTrack(
+  gtfFile = gtf,
+  gene = "Actb",
+  arrowCol = "black",
+  bigwigFile = allBw,
+  sampleAes = "sample",
+  facetVars = "sample"
+)
 
-  # change track colors
-  plotTrack(gtfFile = gtf,
-            gene = 'Actb',
-            arrowCol = 'black',
-            bigwigFile = allBw,
-            sampleAes = 'name',
-            facetVars = 'name',
-            trackCol = pal_lancet()(6))
+# change track colors
+plotTrack(
+  gtfFile = gtf,
+  gene = "Actb",
+  arrowCol = "black",
+  bigwigFile = allBw,
+  sampleAes = "sample",
+  facetVars = "sample",
+  trackCol = pal_lancet()(6)
+)
 
-  # draw multiple genes
-  plotTrack(gtfFile = gtf,
-            gene = 'Tnf',
-            arrowCol = 'black',
-            bigwigFile = allBw,
-            sampleAes = 'sample',
-            facetVars = 'name',
-            multiple = TRUE,
-            myTransId = c('ENSMUST00000025263','ENSMUST00000167924'))
+# draw multiple genes
+plotTrack(
+  gtfFile = gtf,
+  gene = "Tnf",
+  arrowCol = "black",
+  bigwigFile = allBw,
+  sampleAes = "group1",
+  facetVars = "sample",
+  multiple = TRUE,
+  myTransId = c("ENSMUST00000025263", "ENSMUST00000167924")
+)
 
-  # change facet fill colors
-  plotTrack(gtfFile = gtf,
-            gene = 'Actb',
-            arrowCol = 'black',
-            bigwigFile = allBw,
-            sampleAes = 'sample',
-            addfacetCol = TRUE,
-            facetVars = 'name',
-            facetFill = pal_d3()(6),
-            borderCol = rep('white',6))
+# change facet fill colors
+plotTrack(
+  gtfFile = gtf,
+  gene = "Actb",
+  arrowCol = "black",
+  bigwigFile = allBw,
+  sampleAes = "group1",
+  addfacetCol = TRUE,
+  facetVars = "sample",
+  facetFill = pal_d3()(6),
+  borderCol = rep("white", 6)
+)
 
-  # add one facet
-  plotTrack(gtfFile = gtf,
-            gene = 'Actb',
-            arrowCol = 'black',
-            bigwigFile = allBw,
-            sampleAes = 'sample',
-            facetVars = c('group','sample'),
-            addfacetCol = TRUE,
-            facetFill = c(pal_d3()(3),pal_npg()(6)),
-            borderCol = rep('white',9))
+# add one facet
+plotTrack(
+  gtfFile = gtf,
+  gene = "Actb",
+  arrowCol = "black",
+  bigwigFile = allBw,
+  sampleAes = "group1",
+  facetVars = c("group2", "group1"),
+  addfacetCol = TRUE,
+  facetFill = c(pal_d3()(3), pal_npg()(6)),
+  borderCol = rep("white", 9)
+)
 
-  # add more one facet
-  plotTrack(gtfFile = gtf,
-            gene = 'Actb',
-            arrowCol = 'black',
-            bigwigFile = allBw,
-            sampleAes = 'sample',
-            facetVars = c('group','sample','name'),
-            addfacetCol = TRUE,
-            facetFill = c(pal_d3()(3),pal_npg()(6),pal_locuszoom()(6)),
-            borderCol = rep('white',15))
+# add more one facet
+plotTrack(
+  gtfFile = gtf,
+  gene = "Actb",
+  arrowCol = "black",
+  bigwigFile = allBw,
+  sampleAes = "group1",
+  facetVars = c("group2", "group1", "sample"),
+  addfacetCol = TRUE,
+  facetFill = c(pal_d3()(3), pal_npg()(6), pal_locuszoom()(6)),
+  borderCol = rep("white", 15)
+)
 }
+
 }
