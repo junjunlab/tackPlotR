@@ -16,4 +16,4 @@ devtools::install_github('junjunlab/tackPlotR')
 
 ## Examples
 
-> 
+> https://github.com/junjunlab/tackPlotR/wiki
