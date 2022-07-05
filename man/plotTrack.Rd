@@ -36,7 +36,7 @@
 
 \item{facetVars}{Facet by this variable names. Can be multiple.}
 
-\item{relHeight}{Relative height of the gene structure to the track plot, default is 0.1.}
+\item{relHeight}{Relative height of track plot to the the gene structure, default is 10.}
 
 \item{annoTextSize}{Facet text size, default is 10.}
 

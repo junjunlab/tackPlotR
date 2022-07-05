@@ -17,7 +17,7 @@
 #' @param sampleAes Which variable should be used to aes track plot.
 #' @param trackCol Supply your own colors vectors to change track colors.
 #' @param facetVars Facet by this variable names. Can be multiple.
-#' @param relHeight Relative height of the gene structure to the track plot, default is 0.1.
+#' @param relHeight Relative height of track plot to the the gene structure, default is 10.
 #' @param annoTextSize Facet text size, default is 10.
 #' @param base_size ggplot base size, default is 12.
 #' @param ylab Y axis label, default is 'Read coverage'.
@@ -133,7 +133,7 @@ plotTrack <- function(gtfFile = NULL,
                       sampleAes = NULL,
                       trackCol = NULL,
                       facetVars = NULL,
-                      relHeight = 0.1,
+                      relHeight = 10,
                       annoTextSize = 10,
                       base_size = 12,
                       ylab = "Read coverage") {
@@ -241,12 +241,13 @@ plotTrack <- function(gtfFile = NULL,
     ggplot2::theme(plot.margin = ggplot2::margin(0, 0, 10, 0, "mm"))
 
   ############################################################
+  geneRion <- ginfo %>% dplyr::filter(type == 'gene')
 
   # filter gene region
   regionBW <- bigwigFile %>%
     dplyr::filter(seqnames %in% lengthInfo$chr) %>%
-    dplyr::filter(start >= (min(lengthInfo$start) - uped) &
-      end <= (max(lengthInfo$end + downed)))
+    dplyr::filter(start >= (geneRion$start - uped) &
+      end <= (geneRion$end + downed))
 
   ############################################################
 
@@ -326,7 +327,9 @@ plotTrack <- function(gtfFile = NULL,
 
   ##########################################
   # combine
-  pcombined <-
-    p3 %>% aplot::insert_bottom(gene_strcture, height = relHeight)
+  # pcombined <-
+    # p3 %>% aplot::insert_bottom(gene_strcture, height = relHeight)
+  pcombined <- gene_strcture %>% aplot::insert_top(p3, height = relHeight)
+
   return(pcombined)
 }
